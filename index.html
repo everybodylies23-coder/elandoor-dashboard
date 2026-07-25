@@ -378,16 +378,14 @@
             const summaryObj = rawSummaries.find(s => s.date === targetDate);
             if (summaryObj && summaryObj.text) {
                 let cleanText = summaryObj.text;
-                const lines = cleanText.split('
-');
+                const lines = cleanText.split('\n');
                 const filteredLines = lines.filter(line => {
                     const trimmed = line.trim();
                     if (trimmed.startsWith('|') && trimmed.endsWith('|')) return false;
                     if (trimmed.includes('⑤ 【AI】予想・答え合わせ') || trimmed.includes('コピペ用テーブル')) return false;
                     return true;
                 });
-                cleanText = filteredLines.join('
-').trim();
+                cleanText = filteredLines.join('\n').trim();
                 
                 document.getElementById('ai-summary-text').innerHTML = marked.parse(cleanText);
             } else {
