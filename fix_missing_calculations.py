@@ -2,7 +2,9 @@ import openpyxl
 import excel_calc_logic
 import datetime
 
-excel_path = r"C:\Users\user\Desktop\Antigravity\データ分析自動化\スタジアム_データ.xlsx"
+import os
+dir_path = os.path.dirname(os.path.abspath(__file__))
+excel_path = os.path.join(dir_path, "エランドール_データ.xlsx")
 
 def fix_all():
     print(f"Opening {excel_path}...")

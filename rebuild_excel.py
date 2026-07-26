@@ -5,8 +5,8 @@ import openpyxl
 import re
 import excel_calc_logic
 
-dir_path = r"C:\Users\user\Desktop\Antigravity\データ分析自動化"
-excel_path = os.path.join(dir_path, "スタジアム_データ.xlsx")
+dir_path = os.path.dirname(os.path.abspath(__file__))
+excel_path = os.path.join(dir_path, "エランドール_データ.xlsx")
 temp_path_10 = os.path.join(dir_path, "データテンプレート_v13.10.xlsx")
 temp_path_11 = os.path.join(dir_path, "データ分析_テンプレート_v13.11.xlsx")
 processed_dir = os.path.join(dir_path, "data_input", "processed")
@@ -168,7 +168,7 @@ def rebuild_all():
             break
         except PermissionError:
             print(f"\n[エラー] テンプレートをコピーできません: '{excel_path}'")
-            print("Excelアプリ等で 'スタジアム_データ.xlsx' が開いている可能性があります。")
+            print("Excelアプリ等で 'エランドール_データ.xlsx' が開いている可能性があります。")
             print("Excelを一度閉じてから、キーボードの【ENTER】キーを押して再試行してください。")
             input("閉じた後にENTERキーを押してください...")
             
