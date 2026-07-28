@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+a img {
+    text-decoration: none;
+    border: 0px;
+}
+
+.center {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+
+#container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 728px;
+    height: 90px;
+    margin: auto;
+    overflow: hidden;
+    background: #EB1000;
+}
+
+#container div {
+    position: absolute;
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+}
+
+#rolloverCatch {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    cursor: pointer;
+}
+
+#cover {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #fff;
+    z-index: 998;
+}
+
+#logo {
+    top: 27px;
+    left: 565px;
+    z-index: 2;
+}
+
+#button {
+    top: 30px;
+    left: 437px;
+    z-index: 2;
+}
+
+#text_1, #text_2 {
+    top: 24px;
+    left: 210px;
+    z-index: 2;
+}
+
+#document_1 {
+    top: 18px;
+    left: 31px;
+    z-index: 2;
+}
+
+#document_2 {
+    top: 2px;
+    left: 136px;
+    z-index: 1;
+}
+
+#document_3 {
+    top: 40px;
+    left: 7px;
+    z-index: 1;
+}
+
+#ui_1 {
+    top: 8px;
+    left: 17px;
+    z-index: 2;
+}
+
+#ui_2 {
+    top: 34px;
+    left: 17px;
+    z-index: 2;
+}
+
+#ui_2 .mask {
+    height: 13px;
+    background: #fff;
+    transform-origin: left center;
+    overflow: hidden;
+}
+
+#ui_2_text {
+    padding: 2px 0 0;
+    top: 7px;
+    left: 8px;
+    width: 94px;
+    z-index: 3;
+    background-color: #FFF;
+}
+
+#ui_2_line_1 {
+    top: 7px;
+    left: 8px;
+    width: 132px;
+    z-index: 4;
+}
+
+#ui_2_line_2 {
+    top: 19px;
+    left: 8px;
+    width: 132px;
+    z-index: 4;
+}
+
+#ui_2_arrow {
+    top: 26px;
+    left: 126px;
+    z-index: 4;
+}
+
+/* only safari */
+::-webkit-full-page-media, :future, :root #ui_2_arrow {
+    top: 31px;
+    left: 127px;
+}
+
+/* only firefox */
+@supports (-moz-appearance: none) {
+  #ui_2_arrow {
+    top: 27px;
+    left: 127px;
+  }
+}
+
+#ui_3 {
+    top: 35px;
+    left: 17px;
+    z-index: 2;
+}
+
+#ui_4 {
+    top: 28px;
+    left: 17px;
+    z-index: 2;
+}
+
+#document_4 {
+    top: 6px;
+    left: 33px;
+    z-index: 2;
+}

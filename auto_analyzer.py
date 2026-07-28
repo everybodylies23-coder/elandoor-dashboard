@@ -210,6 +210,76 @@ def extract_manager_strategy_context(store_dir):
     return "■ セクション12: 過去の店長戦略コンテキスト\n（※過去の店長戦略コンテキスト.md は配置されていないため無視します）"
 
 
+def extract_event_vs_normal_merihari(all_records, excel_file):
+    """
+    全蓄積データと特定日設定を照合し、「特定日」と「通常日」での高設定（スコア4.5以上）投下台数のギャップを自動判定
+    """
+    try:
+        from collections import defaultdict
+        specific_days_rule = extract_excel_specific_days_setting(excel_file)
+        
+        rule_str = str(specific_days_rule).lower()
+        
+        records_by_date = defaultdict(list)
+        for r in all_records:
+            d_str = r.get('date')
+            score = r.get('score', 0)
+            if d_str:
+                records_by_date[d_str].append(score)
+                
+        event_days_scores = []
+        normal_days_scores = []
+        
+        for d_str, scores in records_by_date.items():
+            try:
+                dt_obj = datetime.datetime.strptime(d_str, "%Y/%m/%d")
+                day_num = dt_obj.day
+                month_num = dt_obj.month
+            except ValueError:
+                continue
+                
+            is_event = False
+            digits = re.findall(r'\d+', rule_str)
+            for d in digits:
+                d_int = int(d)
+                if d_int < 10 and day_num % 10 == d_int:
+                    is_event = True
+                elif day_num == d_int:
+                    is_event = True
+                    
+            if "ゾロ目" in rule_str and (day_num in [11, 22] or day_num == month_num):
+                is_event = True
+                
+            high_count = sum(1 for s in scores if s >= 4.5)
+            if is_event:
+                event_days_scores.append(high_count)
+            else:
+                normal_days_scores.append(high_count)
+                
+        avg_event_high = (sum(event_days_scores) / len(event_days_scores)) if event_days_scores else 0.0
+        avg_normal_high = (sum(normal_days_scores) / len(normal_days_scores)) if normal_days_scores else 0.0
+        
+        lines = [
+            "■ セクション13: 店舗の特定日 vs 通常日 メリハリ分析データ（自動判定）",
+            f"  ・特定日設定: {specific_days_rule}",
+            f"  ・特定日（平均高設定投下数）: {avg_event_high:.1f} 台 / 1営業日",
+            f"  ・通常日（平均高設定投下数）: {avg_normal_high:.1f} 台 / 1営業日"
+        ]
+        
+        if avg_event_high >= avg_normal_high * 2.0 and avg_normal_high <= 2.0:
+            lines.append("  ⚠️ 【店舗診断: 強烈メリハリ型ホール】")
+            lines.append("     この店舗は特定日に高設定が集中し、通常日は高設定が極めて少ない店舗です。")
+            lines.append("     【最重要指示】: 通常日の分析では無理にS/Aランクの予想を出さず、評価を控えめ（Bランク中心または厳選1〜2台）にしてください。")
+        else:
+            lines.append("  ℹ️ 【店舗診断: 全日・ローテ型ホール】")
+            lines.append("     この店舗は通常日にも一定数の高設定が投下されるホールです。ローテーションや履歴DBを重視して予想してください。")
+            
+        return "\n".join(lines)
+    except Exception as e:
+        print(f"Notice: Could not calculate event vs normal merihari: {e}")
+        return "■ セクション13: 店舗の特定日 vs 通常日 メリハリ分析データ\n  （自動判定準備中）"
+
+
 def load_config():
     if not os.path.exists(CONFIG_FILE):
         print(f"Error: {CONFIG_FILE} not found. Please create it first.")
@@ -678,6 +748,7 @@ def prepare_ai_context(excel_path, target_date):
 
     top5_recs = sorted(today_recs, key=lambda x: x['diff_coins'], reverse=True)[:5]
     top5_areas_text = extract_top5_winning_areas(all_records)
+    merihari_text = extract_event_vs_normal_merihari(all_records, excel_path)
     top5_lines = []
     for i, r in enumerate(top5_recs, 1):
         top5_lines.append(f"🏆 第{i}位 台#{r['machine_number']} ({r['machine_name']}): 差枚 {r['diff_coins']:+d}枚 | G数 {r['g_games']}G | スコア {r['score']}")
@@ -739,10 +810,14 @@ def run_gemini_analysis(api_key, context, target_date, excel_file=None):
     genai.configure(api_key=api_key)
     
     models_to_try = [
-        'gemini-2.0-flash',
+        'gemini-3.6-flash',
         'gemini-3.5-flash',
+        'gemini-3.1-pro-preview',
+        'gemini-2.5-pro',
+        'gemini-flash-latest',
         'gemini-3.1-flash-lite',
-        'gemini-3.1-pro-preview'
+        'gemini-2.0-flash',
+        'gemini-2.0-flash-lite'
     ]
     
     d_obj = datetime.datetime.strptime(target_date, "%Y/%m/%d")
@@ -842,17 +917,24 @@ def run_gemini_analysis(api_key, context, target_date, excel_file=None):
 """
 
     for model_name in models_to_try:
-        try:
-            print(f"Trying Gemini model: {model_name}...")
-            model = genai.GenerativeModel(model_name)
-            response = model.generate_content(prompt)
-            if response and response.text:
-                print(f"Success with model: {model_name}!")
-                return response.text
-        except Exception as e:
-            print(f"Model {model_name} failed: {e}")
+        for attempt in range(2):
+            try:
+                print(f"Trying Gemini model: {model_name} (Attempt {attempt+1}/2)...")
+                model = genai.GenerativeModel(model_name)
+                response = model.generate_content(prompt)
+                if response and response.text:
+                    print(f"Success with model: {model_name}!")
+                    return response.text
+            except Exception as e:
+                err_str = str(e)
+                print(f"Model {model_name} attempt {attempt+1} failed: {err_str}")
+                if "429" in err_str or "quota" in err_str.lower() or "rate" in err_str.lower():
+                    print("  [Notice] Rate limit/quota encountered. Waiting 10 seconds before retrying...")
+                    time.sleep(10)
+                else:
+                    break
             
-    raise RuntimeError("All Gemini models failed to generate content.")
+    raise RuntimeError("All Gemini models failed to generate content. Please wait 1-2 minutes for API quota reset and retry.")
 
 
 def write_ai_results_to_excel(excel_path, target_date, ai_text):
@@ -1070,7 +1152,7 @@ def write_ai_results_to_excel(excel_path, target_date, ai_text):
     wb.close()
     print("AI Analysis results written successfully into sheets.")
 
-def generate_html_dashboard(excel_path, store_name, has_diff_coins=False):
+def generate_html_dashboard(excel_path, store_name, has_diff_coins = True):
     """
     Reads data from the Excel workbook and generates a fully interactive, lightweight
     HTML dashboard with rich CSS styling, search filters, and statistics.
@@ -1505,7 +1587,7 @@ def generate_html_dashboard(excel_path, store_name, has_diff_coins=False):
                 updateDashboardForDate(dates[0]);
             }}
             
-            calculateOverallAIAccuracy();
+            calculateOverallAIAccuracy(targetDate);
         }}
 
                                         function extractRankBadge(reasonStr) {{
@@ -1797,9 +1879,17 @@ def generate_html_dashboard(excel_path, store_name, has_diff_coins=False):
             }});
         }}
 
-        function calculateOverallAIAccuracy() {{
+                        function calculateOverallAIAccuracy(targetDate) {{
             const deduped = deduplicatePredictions(rawPredictions);
-            const evaluated = deduped.filter(p => p.result === '〇' || p.result === '×');
+            // Filter predictions UP TO targetDate, ONLY S and A ranks, and ignoring dummy test items
+            const evaluated = deduped.filter(p => {{
+                if (p.result !== '〇' && p.result !== '×') return false;
+                if (!p.reason || p.reason.includes('テスト')) return false;
+                if (targetDate && p.date > targetDate) return false; // Cumulative up to targetDate!
+                const rStr = p.reason.toUpperCase();
+                return rStr.includes('Sランク') || rStr.includes('Aランク') || rStr.includes('推奨S') || rStr.includes('推奨A') || rStr.includes('【S') || rStr.includes('【A');
+            }});
+            
             if (evaluated.length === 0) {{
                 document.getElementById('stat-ai-accuracy').textContent = '- %';
                 return;

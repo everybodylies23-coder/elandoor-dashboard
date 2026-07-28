@@ -1,0 +1,43 @@
+
+var ftGUID_10533340="67181BA99F7BB8";
+var ftConfID_10533340="0";
+var ftParams_10533340="ft_custom=bV2dRmVosF9wMZpha13lR2REjnhhYjusmDc=&ftOBA=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fgoogleads.g.doubleclick.net%2Fpagead%2Fhtml%2Fr20260721%2Fr20190131%2Fzrt_lookup_fy2021.html%23RS-1-%26adk%3D1812271801%26client%3Dca-pub-8934993653059501%26fa%3D1%26ifi%3D6%26uci%3Da!6%26btvi%3D2&gdpr=0&ftClick=https://adclick.g.doubleclick.net/aclk?sa=L&ai=CNKNYqUJmaoy0L7GKjeYP4bCGsA2I76j0XN69t5avAcCNtwEQASDSrfuEAWCJg8iE-BPIAQmoAwHIAwKqBMcCT9Be3C_r2GINDovVHetGgw9E6J_vMm8mh7ymBRoGx8fxLNUX7wuO0U9usKZ7MIaoJAtPMbL4QXS4IpZoFebLIEUmFKxnNlwryUuxpSYUm6m0kMrd1yGCLTzYvB4w3zHF4VKdUri1LX5-AfRvZ1VlsEVdr58n6vi1YH2zSFM1wXLz8kOUuM9WPeP5OOrlmWJTQBuCvEaDN-sSosnz0xw-i2vBzOIkIc68oJ_550wNQ29jPkoWkRnPVA_bBGMzrY2zjlLSKFf4VOvMOn181KXkGBRfbPjsqt7zfyc-xW6wfuduSU5kufx-NViiYnw4eN-mAJIk3JqpMi99mT9yeAnl6ZSqYTrDB-XTBrFqlpf3k2KGmIWUOZR7WAWhOzQKxbIX7C8mWWLyTOKaAMQiiK1uaGkRoOFRb8Vttk0Dfxd-ON59yGfMHPRegAbf5tzi5qOuvsMBoAYhiAcBkAcCqAeT2LECqAeU2LECqAeV2LECqAemvhuoB5bYG6gHqpuxAqgH_56xAqgH35-xAqgHrb6xAqgHv9OxAtgHANIIMhACMgiAgICAgICACDoUn9CAgICABJDAgICAoKiAAqiBgBBIvf3BOlj8jMz17fCVA2AA-gsCCAGADAGqDQJKUOoNEwjOscz17fCVAxUxRcMGHWGYAdaIDgnQFQGAFwGyFwQYDFAB&num=1&cid=CAQSlAIAEQoqgfuouKzinDf0iKB1GBTI-5RbWlmVqHliuQdT4244ukdvMI1JAtsCYEvvJxgcm6zPw_Nal_iPzqC9rXAhYa3gPPQ6wnIgvsHCmTrSlIYOesZcbXpL5e7mDuuGdvXbHgX1TvhRjYAidWW-_hocfOsZUAoxhKWU8UWqyeGtcttxqQeUHK4c5QC0eKKhW9FiBgLYhXKxaACVy8xllRN-BH4o6vJgiIL_0cL69ztPe-sAgV1dHfVLxzLEHqYBhZNFXJ5HGpKpPQUXFRbprTMJ-lmt_D7XPfnAdru1Z0R-ZmjFbBufoex3_7bEXTgj-ljT4nbFj5cTEFxlzgS1Z0hcmxZ1FMFG4bEuBi7TkD16ITbCHMAYASAI&sig=AOD64_26MDKpjmJyOA71Slhkfjj3eNwRWg&client=ca-pub-8934993653059501&adurl=https://exch.quantserve.com/r?&a=p-1RYxePXT9bCS2&labels=_qc.clk,_click.adserver.rtb,_click.rand.1373812973&rtbip=103.229.8.221&rtbdata2=EAA6E2h0dHBzOi8vYW5hLXNsby5jb21aKGFHUHlGR2s3OFVSek42VVZaakx1RVc1azloZHpPNkFlYURQb3UyV0-AAe3xio8FugEbQ0FFU0VPV1BBTHltaWZ2UnJPZ0JkZHNQNkg0wAHAuwHIAc7P0fv5M9oBFmRYSW5sbWR3eTROSWJYMW9tQVpQaGewAgjIAgDQAs7hhvv4n_fMqQHoAp8C8gIOCMuWNxCqy_6I2oqE0Q_yAg0InwIQ0pu67a2hq7JN-AIAigMWMC5wdWItODkzNDk5MzY1MzA1OTUwMZgDAKgDALIDECQPAQJ4dQAAAAAAAAAAAAC6AxIJxkcjHFnLc50RA7qFzQPKhZvCAxIJVkg1WcweOpIRxU7JY1DTbKvIA8mAwIIB2APt8YqPBeIDD3AtMVJZeGVQWFQ5YkNTMuoDBQjYBRBa8gMIMjQ2LTAwMDD4AwCABOI0igQCNzeSBBI1NDk2NDQzOTM4NDg4ODIzOTCaBBIJZUAzglEZR1YRvJIcnNkWC5KiBBIJxkcjHFnLc50RA7qFzQPKhZuqBBIJxkcjHFnLc50RA7qFzQPKhZu4BNAF0AQa8gQCSlCABQGQBQGwBQC4BQDABe3xio8FyAWa0KoE0gUGCAQQAhgK6AUFmgYUChIJZUAzglEZR1YRvJIcnNkWC5KgBgCoBvCzyaMBtQYUzJY5ugZGCgJKUBICMTQYACIEc2V5YSoIMjQ2LTAwMDA6EmtkZGklMjBjb3Jwb3JhdGlvbloLa2RkaSUyMGNvcnCiAQhrZGRpLmNvbckGWkgCzv-OzxPxBgMQAs7_js8T-AYFgAcAigcSCVZINVnMHjqSEcVOyWNQ02yrsAeq67MEuAe9h5kF2AcE&rtb_id=CVpIAs7_js8TEQMQAs7_js8TGDyZas2mI1kG5n7h7VA&redirecturl3=&site_url=ana-slo.com&cachebuster=738585.0214264748";
+var ftKeyword_10533340="";
+var ftCustom_10533340="bV2dRmVosF9wMZpha13lR2REjnhhYjusmDc=";
+var ftSection_10533340="";
+var ftSegment_10533340="";
+var ftSegmentList_10533340=[];
+var ftRuleMatch_10533340="0";
+var ftTimestamp_10533340="1785086658";
+var ftGeoC2_10533340="jp";
+var ftGeoState_10533340="12";
+var ftGeoCity_10533340="yachiyo";
+var ftISP_10533340="kddi corporation";
+var ftSpeed_10533340="broadband";
+var ftConnType_10533340="wifi";
+var ftDMA_10533340="392001";
+var ftLong_10533340="140.08";
+var ftLat_10533340="35.72";
+var ftPostal_10533340="276-0046";
+var ftTimeZone_10533340="+900";
+var ftMobileCarrier_10533340="";
+var ftImp10533340 = {};
+ftImp10533340.privacy = "x";
+ftImp10533340.guidAge = "63";
+ftImp10533340.impID = "C39444CC-DEF2-68B4-781A-8C8565C12519";
+ftImp10533340.duid = "FT:67181BA99F7BB8";
+
+ftImp10533340.ft_tpplid = "";
+ftImp10533340.ft_c = {};
+ftImp10533340.gdpr = "0";
+ftImp10533340.gdpr_consent = "";
+ftImp10533340.gdpr_pd = "";
+ftImp10533340.oob_consent = "";
+ftImp10533340.gdprStoredConsent = "";
+ftImp10533340.us_privacy = "";
+ftImp10533340.gpc = "";
+
+ftImp10533340.jsAppend = "1";
+var ftCreativeId_10533340 = "5297422";
+(function(){var tag=document.getElementById("ft_servedby_10533340")||function(s){return s[s.length-1]}(document.getElementsByTagName("script")),js=document.createElement("script");js.src="https://ajs-assets.ftstatic.com/ftUtils.js";js.id="ftscript_m10533340";js.setAttribute("name","ftscript_m10533340");tag.parentNode.insertBefore(js,tag)})();window.fTChecker=window.fTChecker||function(id){if(!id)return false;id=""+id;if(window.hasOwnProperty("ftUtils")){window["ft"+id]=Object.assign({},window.ftUtils.common);window["ft"+id].getBannerConfig(id)}else(function(id){window.setTimeout(function(){window.fTChecker(id)},50)})(id)};window.fTChecker("10533340");
+

@@ -1,0 +1,211 @@
+/* Initialize Banner */
+
+function init() {
+    hideElement(button);
+    hideElement(text_1);
+    hideElement(text_2);
+    hideElement(ui_1);
+    hideElement(ui_2);
+    hideElement(ui_2_line_1);
+    hideElement(ui_2_line_2);
+    hideElement(ui_2_text);
+    hideElement(ui_2_arrow);
+    hideElement(ui_3);
+    hideElement(ui_4);
+    hideElement(document_4);
+    // TweenMax.set('img:not(.x1)', { transformOrigin: 'left top', scale: 0.5 });
+    document.querySelectorAll('img:not(.x1)').forEach((img) => {
+        const naturalWidth = img.naturalWidth;
+        const naturalHeight = img.naturalHeight;
+
+        // Set width/height to half, rounding to the nearest integer
+        img.style.width = Math.round(naturalWidth / 2) + 'px';
+        img.style.height = Math.round(naturalHeight / 2) + 'px';
+        img.style.transformOrigin = 'left top';
+        img.style.transform = 'none'; // remove scaling if previously set
+    });
+    TweenMax.delayedCall(0, start);
+}
+
+/* Start Animations */
+
+start = function () {
+    TweenMax.delayedCall(0, revealAd);
+    TweenMax.delayedCall(0.5, frame01);
+    TweenMax.delayedCall(2, frame02);
+};
+
+revealAd = function () {
+    TweenMax.to(cover, 0.5, { alpha: 0 });
+};
+
+frame01 = function () {
+    showElement(text_1);
+    showElement(button);
+    TweenMax.from(text_1, 0.6, { y: 10, alpha: 0, ease: Quad.easeOut, delay: 0, force3D: true });
+    TweenMax.from(button, 0.6, { y: 10, alpha: 0, ease: Quad.easeOut, delay: 0, force3D: true });
+};
+
+frame02 = function () {
+    showElement(ui_1);
+    showElement(ui_2);
+
+    bounceIn(ui_1, 0, function () {
+        TweenMax.to(ui_1, 0.1, { scale: 1, ease: Quad.easeOut });
+    });
+    bounceIn(ui_2, 0, function () {
+        TweenMax.to(ui_2, 0.1, { scale: 1, ease: Quad.easeOut });
+    });
+    TweenMax.delayedCall(0.6, frame02_interaction);
+};
+
+frame02_interaction = function () {
+    showElement(ui_2_line_1);
+    showElement(ui_2_line_2);
+    showElement(ui_2_text);
+    const mask1 = document.getElementById('ui_2_line_1');
+    const mask2 = document.getElementById('ui_2_line_2');
+    const fullWidth1 = 132;
+    const fullWidth2 = 132;
+    const leftValue = 8;
+    const duration = 0.8;
+
+    TweenMax.set(mask1, { width: fullWidth1, left: leftValue });
+    TweenMax.set(mask2, { width: fullWidth2, left: leftValue });
+
+    TweenMax.to(mask1, duration, {
+        width: 0,
+        left: leftValue + fullWidth1,
+        ease: Quad.easeOut,
+        onStart: function () {
+            showElement(ui_2_arrow);
+            TweenMax.from(ui_2_arrow, 0.3, { alpha: 0, ease: Quad.easeOut, force3D: true });
+        },
+        onComplete: function () {
+            TweenMax.to(mask2, duration, {
+                width: 0,
+                left: leftValue + fullWidth2,
+                ease: Quad.easeOut,
+                onComplete: function () {
+                    showElement(ui_2_arrow);
+                    TweenMax.to(ui_2_arrow, 0.2, {
+                        scale: 1.12,
+                        ease: Quad.easeOut,
+                        delay: 1.2,
+                        transformOrigin: 'left top',
+                        onComplete: function () {
+                            TweenMax.to(ui_2_arrow, 0.2, {
+                                scale: 1,
+                                ease: Quad.easeOut,
+                                transformOrigin: 'left top',
+                                onComplete: function () {
+                                    TweenMax.delayedCall(0.6, frame03);
+                                },
+                            });
+                        },
+                    });
+                },
+            });
+        },
+    });
+};
+
+frame03 = function () {
+    showElement(ui_3);
+
+    TweenMax.to(ui_2, 0.2, { alpha: 0, ease: Quad.easeOut, delay: 0, force3D: true });
+    TweenMax.to(ui_2_arrow, 0.2, { alpha: 0, ease: Quad.easeOut, delay: 0, force3D: true });
+
+    bounceIn(ui_3, 0, function () {
+        TweenMax.to(ui_3, 0.1, {
+            scale: 1,
+            ease: Quad.easeOut,
+            onComplete: function () {
+                TweenMax.delayedCall(2, frame04);
+            },
+        });
+    });
+};
+
+frame04 = function () {
+    showElement(text_2);
+    showElement(ui_4);
+
+    TweenMax.to(ui_1, 0.3, { alpha: 0, ease: Quad.easeOut, delay: 0, force3D: true });
+    TweenMax.to(ui_3, 0.3, { alpha: 0, ease: Quad.easeOut, delay: 0, force3D: true });
+    TweenMax.to(text_1, 0.3, { alpha: 0, ease: Quad.easeOut, delay: 0, force3D: true });
+    TweenMax.from(text_2, 0.6, { y: 10, alpha: 0, ease: Quad.easeOut, delay: 0.2, force3D: true });
+
+    bounceIn(ui_4, 0, function () {
+        TweenMax.to(ui_4, 0.1, {
+            scale: 1,
+            ease: Quad.easeOut,
+            onComplete: function () {
+                TweenMax.delayedCall(2, frame05);
+            },
+        });
+    });
+};
+
+frame05 = function () {
+    TweenMax.to(ui_4, 0.2, {
+        scale: 1.04,
+        ease: Quad.easeOut,
+        delay: 0.1,
+        transformOrigin: 'left top',
+        onComplete: function () {
+            TweenMax.to(ui_4, 0.2, {
+                scale: 1,
+                ease: Quad.easeOut,
+                onComplete: function () {
+                    TweenMax.delayedCall(0.3, frame06);
+                },
+            });
+        },
+    });
+};
+
+frame06 = function () {
+    showElement(document_4);
+
+    TweenMax.to(ui_4, 0.3, { alpha: 0, ease: Quad.easeOut, delay: 0, force3D: true });
+    TweenMax.to(document_3, 0.3, { alpha: 0, ease: Quad.easeOut, delay: 0.1, x: +25, y: -12, force3D: true });
+    TweenMax.to(document_2, 0.3, { alpha: 0, ease: Quad.easeOut, delay: 0.1, x: -25, y: +12, force3D: true });
+    TweenMax.to(document_1, 0.5, { alpha: 0, ease: Quad.easeOut, delay: 0.1, force3D: true });
+
+    TweenMax.fromTo(document_4, 0.3, { alpha: 0, x: +11 }, { alpha: 1, x: 0, ease: Quad.easeOut, delay: 0.1, force3D: true });
+};
+
+showElement = function (e) {
+    e.style.visibility = 'visible';
+};
+
+hideElement = function (e) {
+    e.style.visibility = 'hidden';
+};
+
+bounceIn = function (el, delay, onDone) {
+    onDone = onDone || function () {};
+    TweenMax.from(el, 0.3, {
+        scale: 0.3,
+        alpha: 0,
+        ease: Quad.easeOut,
+        transformOrigin: 'left top',
+        delay: delay,
+        force3D: true,
+        onComplete: function () {
+            TweenMax.to(el, 0.2, {
+                scale: 1.01,
+                ease: Quad.easeOut,
+                transformOrigin: 'left top',
+                onComplete: function () {
+                    TweenMax.to(el, 0.1, {
+                        scale: 1,
+                        ease: Quad.easeOut,
+                        onComplete: onDone,
+                    });
+                },
+            });
+        },
+    });
+};
