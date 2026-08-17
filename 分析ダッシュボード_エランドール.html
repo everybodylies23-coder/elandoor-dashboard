@@ -72,59 +72,6 @@
             </div>
         </div>
 
-        <!-- ジャグラー平均設定・確率分析 -->
-        <section class="p-6 glass rounded-2xl space-y-5">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                <div class="flex items-center gap-2">
-                    <span class="p-1.5 bg-amber-500/10 text-amber-300 rounded-lg text-sm">🤡</span>
-                    <h2 class="text-xl font-bold">ジャグラー平均設定・確率分析</h2>
-                </div>
-                <p class="text-[11px] text-slate-400">平均設定＝各台の最終スコア平均 / REG・ブドウ＝G数加重平均</p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
-                    <p class="text-[11px] text-slate-400">全ジャグラー 平均設定</p>
-                    <p id="jug-stat-score" class="text-xl font-bold text-amber-300 mt-1">—</p>
-                </div>
-                <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
-                    <p class="text-[11px] text-slate-400">平均REG確率</p>
-                    <p id="jug-stat-reg" class="text-xl font-bold text-cyan-300 mt-1">—</p>
-                </div>
-                <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
-                    <p class="text-[11px] text-slate-400">平均ブドウ確率</p>
-                    <p id="jug-stat-grape" class="text-xl font-bold text-emerald-300 mt-1">—</p>
-                </div>
-                <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
-                    <p class="text-[11px] text-slate-400">REG＋ブドウ 参考設定</p>
-                    <p id="jug-stat-reference" class="text-xl font-bold text-violet-300 mt-1">—</p>
-                </div>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse text-xs min-w-[860px]">
-                    <thead>
-                        <tr class="border-b border-slate-700 text-slate-400">
-                            <th class="py-3 px-2">機種名</th>
-                            <th class="py-3 px-2 text-right">台数</th>
-                            <th class="py-3 px-2 text-right">平均設定<br><span class="font-normal text-[10px]">最終スコア</span></th>
-                            <th class="py-3 px-2 text-right">平均REG確率</th>
-                            <th class="py-3 px-2 text-center">REG推定</th>
-                            <th class="py-3 px-2 text-right">平均ブドウ確率</th>
-                            <th class="py-3 px-2 text-center">ブドウ推定</th>
-                            <th class="py-3 px-2 text-center">参考設定</th>
-                        </tr>
-                    </thead>
-                    <tbody id="juggler-setting-body" class="divide-y divide-slate-800/60">
-                        <tr><td colspan="8" class="py-5 text-center text-slate-500">ジャグラーデータがありません。</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="text-[11px] leading-relaxed text-slate-500">
-                REG・ブドウ推定はExcelの「【マスター】スペック」にある機種別T7～T1閾値と同じ判定です（T7＝設定6以上、T1＝設定1相当、T1未達＝設定1未満）。参考設定はREG推定とブドウ推定の平均で、最終スコア平均とは別の補助指標です。
-            </p>
-        </section>
-
         <!-- ① AIによる営業総括・心理分析 -->
         <section class="p-6 glass rounded-2xl space-y-4">
             <div class="flex items-center gap-2">
@@ -308,6 +255,59 @@
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- ジャグラー平均設定・確率分析 -->
+        <section class="p-6 glass rounded-2xl space-y-5">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="p-1.5 bg-amber-500/10 text-amber-300 rounded-lg text-sm">🤡</span>
+                    <h2 class="text-xl font-bold">ジャグラー平均設定・確率分析</h2>
+                </div>
+                <p class="text-[11px] text-slate-400">平均設定＝各台の最終スコア平均 / REG・ブドウ＝G数加重平均</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <p class="text-[11px] text-slate-400">全ジャグラー 平均設定</p>
+                    <p id="jug-stat-score" class="text-xl font-bold text-amber-300 mt-1">—</p>
+                </div>
+                <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <p class="text-[11px] text-slate-400">平均REG確率</p>
+                    <p id="jug-stat-reg" class="text-xl font-bold text-cyan-300 mt-1">—</p>
+                </div>
+                <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <p class="text-[11px] text-slate-400">平均ブドウ確率</p>
+                    <p id="jug-stat-grape" class="text-xl font-bold text-emerald-300 mt-1">—</p>
+                </div>
+                <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <p class="text-[11px] text-slate-400">REG＋ブドウ 参考設定</p>
+                    <p id="jug-stat-reference" class="text-xl font-bold text-violet-300 mt-1">—</p>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs min-w-[860px]">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-400">
+                            <th class="py-3 px-2">機種名</th>
+                            <th class="py-3 px-2 text-right">台数</th>
+                            <th class="py-3 px-2 text-right">平均設定<br><span class="font-normal text-[10px]">最終スコア</span></th>
+                            <th class="py-3 px-2 text-right">平均REG確率</th>
+                            <th class="py-3 px-2 text-center">REG推定</th>
+                            <th class="py-3 px-2 text-right">平均ブドウ確率</th>
+                            <th class="py-3 px-2 text-center">ブドウ推定</th>
+                            <th class="py-3 px-2 text-center">参考設定</th>
+                        </tr>
+                    </thead>
+                    <tbody id="juggler-setting-body" class="divide-y divide-slate-800/60">
+                        <tr><td colspan="8" class="py-5 text-center text-slate-500">ジャグラーデータがありません。</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-[11px] leading-relaxed text-slate-500">
+                REG・ブドウ推定はExcelの「【マスター】スペック」にある機種別T7～T1閾値と同じ判定です（T7＝設定6以上、T1＝設定1相当、T1未達＝設定1未満）。参考設定はREG推定とブドウ推定の平均で、最終スコア平均とは別の補助指標です。
+            </p>
         </section>
 
         <!-- ⑤ 本日（選択日）の全台データ一覧 -->
